@@ -1,0 +1,40 @@
+{
+  "name": "data",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/data/src",
+  "prefix": "l",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/data/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/data/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/data/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/data/src/test.ts",
+        "tsConfig": "libs/data/tsconfig.spec.json",
+        "karmaConfig": "libs/data/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["libs/data/**/*.ts", "libs/data/**/*.html"]
+      }
+    }
+  },
+  "tags": []
+}
