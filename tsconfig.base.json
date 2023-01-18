@@ -15,8 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@loriini": ["libs/misc/src/index.ts"],
-      "@loriini/data": ["libs/data/src/index.ts"]
+      "@loriini/data": ["libs/data/src/index.ts"],
+      "@loriini/data/proxy": ["libs/data/src/proxy/index.ts"],
+      "@loriini/miscellaneous": ["libs/core/miscellaneous/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
