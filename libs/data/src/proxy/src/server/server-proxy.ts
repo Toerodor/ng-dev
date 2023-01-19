@@ -9,7 +9,7 @@ import { Proxy } from '../proxy';
 import { ResultSet } from '../result-set';
 import { OperationType } from '../operation';
 
-import { ServerOperation } from './server-operation';
+import { normalizeServerOperation, ServerOperation } from './server-operation';
 import { HttpMethod } from './http-method';
 
 export class ServerProxy extends Proxy {
@@ -44,11 +44,13 @@ export class ServerProxy extends Proxy {
   protected readonly http: HttpClient = inject(HttpClient);
 
   public execute<T>(operation: ServerOperation): Observable<ResultSet<T>> {
-    const url = this.makeUrl(operation);
-    const method = this.makeHttpMethod(operation);
-    const params = this.makeHttpParams(operation);
-    const headers = this.makeHttpHeaders(operation);
-    const queryParams = this.makeQueryParams(operation);
+    const normalizedOperation = normalizeServerOperation(operation)
+
+    const url = this.makeUrl(normalizedOperation);
+    const method = this.makeHttpMethod(normalizedOperation);
+    const params = this.makeHttpParams(normalizedOperation);
+    const headers = this.makeHttpHeaders(normalizedOperation);
+    const queryParams = this.makeQueryParams(normalizedOperation);
 
     return this.http.request(method, url, {
       observe: "response",
@@ -66,12 +68,12 @@ export class ServerProxy extends Proxy {
     );
   }
 
-  protected makeUrl(operation: ServerOperation): string {
+  protected makeUrl(operation: Required<ServerOperation>): string {
+    const { key } = operation.query;
+
     let url = operation.url;
 
-    if (operation.query?.key) {
-      const key = operation.query?.key;
-
+    if (key) {
       if (!url.match(/\/$/)) {
         url += "/";
       }
@@ -82,35 +84,36 @@ export class ServerProxy extends Proxy {
     return url;
   }
 
-  protected makeHttpMethod(operation: ServerOperation): HttpMethod {
+  protected makeHttpMethod(operation: Required<ServerOperation>): HttpMethod {
     return this.defaultsMethods[operation.type];
   }
 
-  protected makeHttpParams(operation: ServerOperation): {
+  protected makeHttpParams(operation: Required<ServerOperation>): {
     [key: string]: string | number | boolean | ReadonlyArray<string | number | boolean>;
   } {
     return { ...this.defaultParams, ...operation.extraParams };
   }
 
-  protected makeHttpHeaders(operation: ServerOperation): {
+  protected makeHttpHeaders(operation: Required<ServerOperation>): {
     [key: string]: string | string[];
   } {
     return { ...this.defaultHeaders, ...operation.extraHeaders };
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  protected makeQueryParams(_operation: ServerOperation): { [key: string]: string | number | boolean | ReadonlyArray<string | number | boolean>; } {
+  protected makeQueryParams(_operation: Required<ServerOperation>): { [key: string]: string | number | boolean | ReadonlyArray<string | number | boolean>; } {
     return {};
   }
 
-  protected processResponse<TIn, TOut>(response: HttpResponse<TIn>): ResultSet<TOut> {
-    const data = normalizeArray(response.body) as unknown as TOut[];
+  protected processResponse<T>(response: HttpResponse<unknown>): ResultSet<T> {
+    const data = normalizeArray(response.body) as T[];
     const count = data.length;
 
-    return new ResultSet<TOut>({
+    return new ResultSet<T>({
       data,
       count,
     });
   }
 
 }
+

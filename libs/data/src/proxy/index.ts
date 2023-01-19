@@ -1,4 +1,5 @@
 export { Proxy } from './src/proxy';
-export { Operation, OperationType } from './src/operation';
+export { Operation, OperationType, normalizeOperation } from './src/operation';
 
-export { } from './src/server';
+export { HttpMethod, ServerProxy, ServerOperation, normalizeServerOperation } from './src/server';
+export { ODataProxy, ODataEntity, ODataCollection, isODataCollection, isODataEntity } from './src/odata';

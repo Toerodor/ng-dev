@@ -1,3 +1,3 @@
-export function isObject(obj: unknown): boolean {
+export function isObject(obj: unknown): obj is Record<string | number | symbol, unknown> {
   return obj !== null && typeof obj === 'object'
 }

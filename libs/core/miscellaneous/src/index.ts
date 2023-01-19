@@ -6,6 +6,7 @@ export { isFunction } from './lib/is-function';
 export { isObject } from './lib/is-object';
 export { isPlainObject } from './lib/is-plain-object';
 export { isPrimitive } from './lib/is-primitive';
+export { isString } from './lib/is-string';
 export { isTrue } from './lib/is-true';
 export { isUndefined } from './lib/is-undefined';
 export { normalizeArray } from './lib/normalize-array';

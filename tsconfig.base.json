@@ -17,6 +17,7 @@
     "paths": {
       "@loriini/data": ["libs/data/src/index.ts"],
       "@loriini/data/proxy": ["libs/data/src/proxy/index.ts"],
+      "@loriini/data/query": ["libs/data/src/query/index.ts"],
       "@loriini/miscellaneous": ["libs/core/miscellaneous/src/index.ts"]
     }
   },

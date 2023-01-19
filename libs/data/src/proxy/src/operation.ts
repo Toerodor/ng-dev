@@ -1,3 +1,5 @@
+import { Query } from '../../query';
+
 export enum OperationType {
   CREATE,
   READ,
@@ -11,7 +13,12 @@ export type Operation = {
   url: string;
   type: OperationType;
   payload?: unknown | null;
-  query?: {
-    key?: string | number
-  }
+  query?: Query
+}
+
+export function normalizeOperation(operation: Operation): Required<Operation> {
+  operation.query ??= {};
+  operation.payload ??= null;
+
+  return operation as Required<Operation>;
 }
