@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 
-import { isArray, isFunction, isNumber, isObject, isString } from '@loriini/miscellaneous';
+import { isFunction } from '@loriini/miscellaneous';
 
-import { InferOperation, Operation, OperationType, Proxy, ProxyConstructor } from '../../proxy';
+import { InferOperation, Operation, Proxy, ProxyConstructor } from '../../proxy';
 
-type PayloadData =  Record<string | number, unknown>;
+type TObject = Record<string | number, unknown>;
 
 export class DataService<
   TProxy extends Proxy,
@@ -18,6 +18,23 @@ export class DataService<
   constructor(url: string, proxy: TProxy | ProxyConstructor<TProxy>) {
     this.url = url;
     this.proxy = isFunction(proxy) ? Reflect.construct(proxy, []) : proxy;
+  }
+
+
+  public create(options: {
+    data: TObject;
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>): Observable<any>;
+
+  public create(options: {
+    key: string | number;
+    data: TObject;
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>): Observable<any>;
+
+  public create(): Observable<any> {
+
+    return this.request({} as TOperation);
   }
 
   // public create(data: PayloadData): Observable<any>;
@@ -62,7 +79,7 @@ export class DataService<
   }
 
   public request(operation: TOperation): Observable<any> {
-    return undefined
+    return undefined;
   }
 
 }
