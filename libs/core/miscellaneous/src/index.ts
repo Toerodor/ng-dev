@@ -3,6 +3,7 @@ export { isArray } from './lib/is-array';
 export { isDefined } from './lib/is-defined';
 export { isFalse } from './lib/is-false';
 export { isFunction } from './lib/is-function';
+export { isNumber } from './lib/is-number';
 export { isObject } from './lib/is-object';
 export { isPlainObject } from './lib/is-plain-object';
 export { isPrimitive } from './lib/is-primitive';
