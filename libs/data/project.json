@@ -32,7 +32,12 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["libs/data/**/*.ts", "libs/data/**/*.html"]
+        "lintFilePatterns": [
+          "libs/data/**/*.ts",
+          "libs/data/proxy/**/*.ts",
+          "libs/data/query/**/*.ts",
+          "libs/data/service/**/*.ts"
+        ]
       }
     }
   },

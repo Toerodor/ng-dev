@@ -1,4 +1,4 @@
-import { Query } from '../../query';
+import { Query } from '@loriini/data/query';
 
 export enum OperationType {
   CREATE,

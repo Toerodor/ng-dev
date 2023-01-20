@@ -1,4 +1,4 @@
-import { InferOperation, Operation, Proxy, ProxyConstructor } from '../../proxy';
+import { InferOperation, Operation, Proxy, ProxyConstructor } from '@loriini/data/proxy';
 import { DataService } from './service';
 
 export function createService<

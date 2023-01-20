@@ -16,8 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@loriini/data": ["libs/data/src/index.ts"],
-      "@loriini/data/proxy": ["libs/data/src/proxy/index.ts"],
-      "@loriini/data/query": ["libs/data/src/query/index.ts"],
+      "@loriini/data/proxy": ["libs/data/proxy/index.ts"],
+      "@loriini/data/query": ["libs/data/query/index.ts"],
+      "@loriini/data/service": ["libs/data/service/index.ts"],
       "@loriini/miscellaneous": ["libs/core/miscellaneous/src/index.ts"]
     }
   },

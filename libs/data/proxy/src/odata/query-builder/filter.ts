@@ -1,4 +1,4 @@
-import { FilterCriteria, FilterExpression, isFilterCriteria, isFilterExpression } from '../../../../query';
+import { FilterCriteria, FilterExpression, isFilterCriteria, isFilterExpression } from '@loriini/data/query';
 import { normalizeField, normalizeValue } from './utils';
 
 export const ComparisonOperators

@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 
 import { isFunction, mergeObjects } from '@loriini/miscellaneous';
 
-import { InferOperation, Operation, OperationType, Proxy, ProxyConstructor } from '../../proxy';
-import { FilterExpression } from '../../query';
+import { InferOperation, Operation, OperationType, Proxy, ProxyConstructor } from '@loriini/data/proxy';
+import { FilterExpression } from '@loriini/data/query';
 
 type TObject = Record<string | number, unknown>;
 

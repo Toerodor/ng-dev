@@ -1,5 +1,6 @@
-import { FilterCriteria } from './filter-criteria';
 import { isObject } from '@loriini/miscellaneous';
+
+import { FilterCriteria } from './filter-criteria';
 
 export type FilterExpression = {
   logic: 'and' | 'or';
