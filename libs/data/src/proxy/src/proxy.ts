@@ -15,6 +15,8 @@ export type InferOperation<TProxy extends Proxy> = TProxy['execute'] extends (op
 
 export abstract class Proxy {
 
+  public abstract execute<T>(operation: Operation, rawResult: boolean): Observable<T>;
+
   public abstract execute<T>(operation: Operation): Observable<ResultSet<T>>;
 
 }

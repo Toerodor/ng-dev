@@ -10,4 +10,5 @@ export { isPrimitive } from './lib/is-primitive';
 export { isString } from './lib/is-string';
 export { isTrue } from './lib/is-true';
 export { isUndefined } from './lib/is-undefined';
+export { mergeObjects } from './lib/merge-objects';
 export { normalizeArray } from './lib/normalize-array';

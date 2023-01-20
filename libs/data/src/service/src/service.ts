@@ -1,8 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { isFunction } from '@loriini/miscellaneous';
+import { isFunction, mergeObjects } from '@loriini/miscellaneous';
 
-import { InferOperation, Operation, Proxy, ProxyConstructor } from '../../proxy';
+import { InferOperation, Operation, OperationType, Proxy, ProxyConstructor } from '../../proxy';
+import { FilterExpression } from '../../query';
 
 type TObject = Record<string | number, unknown>;
 
@@ -20,66 +21,145 @@ export class DataService<
     this.proxy = isFunction(proxy) ? Reflect.construct(proxy, []) : proxy;
   }
 
-
-  public create(options: {
-    data: TObject;
+  public create<T>(options: {
+    data: TObject | TObject[];
     url?: string
-  } & Omit<TOperation, 'payload' | 'type' | 'query'>): Observable<any>;
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
-  public create(options: {
+  public create<T>(options: {
     key: string | number;
-    data: TObject;
+    data: TObject | TObject[];
     url?: string
-  } & Omit<TOperation, 'payload' | 'type' | 'query'>): Observable<any>;
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
-  public create(): Observable<any> {
+  public create<T>(options: {
+    key?: string | number;
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult: boolean = false): Observable<T> {
+    const { data, key, url, ...extraOptions } = options;
 
-    return this.request({} as TOperation);
+    return this.request<T>(mergeObjects({
+      url: url ?? this.url,
+      type: OperationType.CREATE,
+      payload: data,
+      query: {
+        key: key
+      },
+    }, extraOptions) as TOperation, rawResult).pipe();
   }
 
-  // public create(data: PayloadData): Observable<any>;
-  // public create(data: PayloadData[]): Observable<any>;
-  // public create(key: string | number, data: PayloadData): Observable<any>;
-  // public create(keyOrData: string | number | PayloadData | PayloadData[], dataOrNull?: PayloadData | PayloadData[]): Observable<any> {
-  //
-  //   let key = undefined;
-  //   let payload = undefined;
-  //   if((isString(keyOrData) || isNumber(keyOrData)) && isObject(dataOrNull)) {
-  //     key = keyOrData;
-  //     payload = dataOrNull;
-  //   } else if(isObject(keyOrData) || isArray(keyOrData)) {
-  //     payload = keyOrData;
-  //   } else {
-  //     throw new Error("");
-  //   }
-  //
-  //   return this.request({
-  //     url: this.url,
-  //     type: OperationType.CREATE,
-  //     payload: payload,
-  //     query: {
-  //       key: key
-  //     }
-  //   } as TOperation)
-  // }
+  public read<T>(options: {
+    key: string | number;
+    url?: string
+    filter?: FilterExpression
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
-  public read() {
+  public read<T>(options: {
+    url?: string
+    skip?: number;
+    take?: number;
+    count?: number;
+    filter?: FilterExpression
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
+
+  public read<T>(options: {
+    url?: string
+    key?: string | number;
+    skip?: number;
+    take?: number;
+    count?: number;
+    filter?: FilterExpression
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult: boolean = false): Observable<T> {
+    const {
+      url,
+      key,
+      skip,
+      take,
+      count,
+      filter,
+      ...extraOptions
+    } = options;
+
+    return this.request<T>(mergeObjects({
+      url: url ?? this.url,
+      type: OperationType.READ,
+      query: {
+        key: key,
+        skip: skip,
+        take: take,
+        count: count,
+        filter: filter
+      },
+    }, extraOptions) as TOperation, rawResult).pipe();
   }
 
-  public update() {
+  public update<T>(options: {
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
+
+  public update<T>(options: {
+    key: string | number;
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
+
+  public update<T>(options: {
+    key?: string | number;
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult: boolean = false): Observable<T> {
+    const { data, key, url, ...extraOptions } = options;
+
+    return this.request<T>(mergeObjects({
+      url: url ?? this.url,
+      type: OperationType.UPDATE,
+      payload: data,
+      query: {
+        key: key,
+      },
+    }, extraOptions) as TOperation, rawResult).pipe();
   }
 
-  public delete() {
+  public delete<T>(options: {
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
+
+  public delete<T>(options: {
+    key: string | number;
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
+
+  public delete<T>(options: {
+    key?: string | number;
+    data: TObject | TObject[];
+    url?: string
+  } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult: boolean = false): Observable<T> {
+    const { data, key, url, ...extraOptions } = options;
+
+    return this.request<T>(mergeObjects({
+      url: url ?? this.url,
+      type: OperationType.DELETE,
+      payload: data,
+      query: {
+        key: key,
+      },
+    }, extraOptions) as TOperation, rawResult).pipe();
   }
 
   public action() {
+    // TODO: action
   }
 
   public function() {
+    // TODO: function
   }
 
-  public request(operation: TOperation): Observable<any> {
-    return undefined;
+  public request<T>(operation: TOperation, rawResult: boolean = false): Observable<T> {
+    return this.proxy.execute(operation, rawResult) as Observable<T>;
   }
 
 }

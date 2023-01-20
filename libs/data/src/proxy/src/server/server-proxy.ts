@@ -43,7 +43,7 @@ export class ServerProxy extends Proxy {
 
   protected readonly http: HttpClient = inject(HttpClient);
 
-  public execute<T>(operation: ServerOperation): Observable<ResultSet<T>> {
+  public execute<T>(operation: ServerOperation, rawResult: boolean = false): Observable<ResultSet<T> | T> {
     const normalizedOperation = normalizeServerOperation(operation)
 
     const url = this.makeUrl(normalizedOperation);
@@ -60,7 +60,7 @@ export class ServerProxy extends Proxy {
       responseType: this.responseType,
       reportProgress: false
     }).pipe(
-      map((response) => this.processResponse(response) as ResultSet<T>),
+      map((response) => rawResult ? (response.body ?? {}) : this.processResponse(response)),
       catchError((error) => throwError(() => {
         console.log(error);
         return null;
