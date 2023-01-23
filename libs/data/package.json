@@ -2,8 +2,8 @@
   "name": "@loriini/data",
   "version": "0.0.2",
   "peerDependencies": {
-    "@angular/common": "^15.0.0",
-    "@angular/core": "^15.0.0"
+    "@angular/common": "^14.2.10",
+    "@angular/core": "^14.2.10"
   },
   "dependencies": {
     "tslib": "^2.3.0"

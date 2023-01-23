@@ -19,7 +19,8 @@
       "@loriini/data/proxy": ["libs/data/proxy/index.ts"],
       "@loriini/data/query": ["libs/data/query/index.ts"],
       "@loriini/data/service": ["libs/data/service/index.ts"],
-      "@loriini/miscellaneous": ["libs/core/miscellaneous/src/index.ts"]
+      "@loriini/miscellaneous": ["libs/core/miscellaneous/src/index.ts"],
+      "@loriini/store": ["libs/store/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
