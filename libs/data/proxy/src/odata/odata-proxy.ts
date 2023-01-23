@@ -8,7 +8,8 @@ import { ResultSet } from '../result-set';
 
 import { isODataCollection } from './odata-collection';
 import { isODataEntity } from './odata-entity';
-import { filterBuilder } from './query-builder/filter';
+
+import { toODataStringFilter } from './query';
 
 
 export class ODataProxy extends ServerProxy {
@@ -47,7 +48,7 @@ export class ODataProxy extends ServerProxy {
     }
 
     if(filter !== undefined) {
-      query["$filter"] = filterBuilder(filter);
+      query["$filter"] = toODataStringFilter(filter);
     }
 
     return query;
