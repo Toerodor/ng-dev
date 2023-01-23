@@ -32,19 +32,19 @@ export class ServerProxy extends Proxy {
 
   protected get defaultsMethods(): Record<OperationType, HttpMethod> {
     return {
-      [OperationType.CREATE]: "POST",
-      [OperationType.READ]: "GET",
-      [OperationType.UPDATE]: "POST",
-      [OperationType.DELETE]: "POST",
-      [OperationType.ACTION]: "POST",
-      [OperationType.FUNCTION]: "POST"
+      [OperationType.CREATE]: 'POST',
+      [OperationType.READ]: 'GET',
+      [OperationType.UPDATE]: 'POST',
+      [OperationType.DELETE]: 'POST',
+      [OperationType.ACTION]: 'POST',
+      [OperationType.FUNCTION]: 'POST'
     };
   }
 
   protected readonly http: HttpClient = inject(HttpClient);
 
   public execute<T>(operation: ServerOperation, rawResult: boolean = false): Observable<ResultSet<T> | T> {
-    const normalizedOperation = normalizeServerOperation(operation)
+    const normalizedOperation = normalizeServerOperation(operation);
 
     const url = this.makeUrl(normalizedOperation);
     const method = this.makeHttpMethod(normalizedOperation);
@@ -53,7 +53,7 @@ export class ServerProxy extends Proxy {
     const queryParams = this.makeQueryParams(normalizedOperation);
 
     return this.http.request(method, url, {
-      observe: "response",
+      observe: 'response',
       headers: headers,
       params: { ...params, ...queryParams },
       withCredentials: this.withCredentials,
@@ -75,7 +75,7 @@ export class ServerProxy extends Proxy {
 
     if (key) {
       if (!url.match(/\/$/)) {
-        url += "/";
+        url += '/';
       }
 
       url += encodeURIComponent(key);
@@ -111,7 +111,7 @@ export class ServerProxy extends Proxy {
 
     return new ResultSet<T>({
       data,
-      count,
+      count
     });
   }
 
