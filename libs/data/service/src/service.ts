@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 
-import { isFunction, mergeObjects } from '@loriini/miscellaneous';
+import { isArray, isFunction, mergeObjects } from '@loriini/miscellaneous';
 
 import { InferOperation, Operation, OperationType, Proxy, ProxyConstructor } from '@loriini/data/proxy';
-import { FilterExpression } from '@loriini/data/query';
+import { FilterCriteria, FilterExpression } from '@loriini/data/query';
 
 type TObject = Record<string | number, unknown>;
 
@@ -45,14 +45,14 @@ export class DataService<
       payload: data,
       query: {
         key: key
-      },
+      }
     }, extraOptions) as TOperation, rawResult).pipe();
   }
 
   public read<T>(options: {
     key: string | number;
     url?: string
-    filter?: FilterExpression
+    filter?: FilterExpression | (FilterCriteria | FilterExpression)[]
   } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
   public read<T>(options: {
@@ -60,7 +60,7 @@ export class DataService<
     skip?: number;
     take?: number;
     count?: number;
-    filter?: FilterExpression
+    filter?: FilterExpression | (FilterCriteria | FilterExpression)[]
   } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
   public read<T>(options: {
@@ -69,7 +69,7 @@ export class DataService<
     skip?: number;
     take?: number;
     count?: number;
-    filter?: FilterExpression
+    filter?: FilterExpression | (FilterCriteria | FilterExpression)[]
   } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult: boolean = false): Observable<T> {
     const {
       url,
@@ -89,8 +89,8 @@ export class DataService<
         skip: skip,
         take: take,
         count: count,
-        filter: filter
-      },
+        filter: isArray(filter) ? { logic: 'and', items: filter } : filter
+      }
     }, extraOptions) as TOperation, rawResult).pipe();
   }
 
@@ -117,8 +117,8 @@ export class DataService<
       type: OperationType.UPDATE,
       payload: data,
       query: {
-        key: key,
-      },
+        key: key
+      }
     }, extraOptions) as TOperation, rawResult).pipe();
   }
 
@@ -145,8 +145,8 @@ export class DataService<
       type: OperationType.DELETE,
       payload: data,
       query: {
-        key: key,
-      },
+        key: key
+      }
     }, extraOptions) as TOperation, rawResult).pipe();
   }
 

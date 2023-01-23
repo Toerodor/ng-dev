@@ -5,5 +5,5 @@ export type Query = {
   skip?: number;
   take?: number;
   count?: number;
-  filter?: FilterExpression
+  filter?: FilterExpression;
 }
