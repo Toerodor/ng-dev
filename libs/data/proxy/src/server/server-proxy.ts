@@ -12,6 +12,7 @@ import { OperationType } from '../operation';
 import { normalizeServerOperation, ServerOperation } from './server-operation';
 import { HttpMethod } from './http-method';
 
+
 export class ServerProxy extends Proxy {
 
   protected get withCredentials(): boolean {
@@ -39,6 +40,10 @@ export class ServerProxy extends Proxy {
       [OperationType.ACTION]: 'POST',
       [OperationType.FUNCTION]: 'POST'
     };
+  }
+
+  protected get defaultFilterCompilerDictionary(): Record<string, (obj: unknown) => string> {
+    return {}
   }
 
   protected readonly http: HttpClient = inject(HttpClient);

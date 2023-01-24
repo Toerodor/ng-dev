@@ -1,2 +1,2 @@
 export { Query } from './src/query';
-export { FilterCriteria, FilterExpression, isFilterCriteria, isFilterExpression } from './src/filter';
+export { FilterExpression, FilterCriteria, isFilterExpression, isFilterCriteria } from './src/filter';

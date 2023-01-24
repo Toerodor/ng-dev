@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { isArray, isFunction, mergeObjects } from '@loriini/miscellaneous';
 
 import { InferOperation, Operation, OperationType, Proxy, ProxyConstructor } from '@loriini/data/proxy';
-import { FilterCriteria, FilterExpression } from '@loriini/data/query';
+import { FilterPredicate, FilterExpression } from '@loriini/data/query';
 
 type TObject = Record<string | number, unknown>;
 
@@ -52,7 +52,7 @@ export class DataService<
   public read<T>(options: {
     key: string | number;
     url?: string
-    filter?: FilterExpression | (FilterCriteria | FilterExpression)[]
+    filter?: FilterExpression | (FilterPredicate | FilterExpression)[]
   } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
   public read<T>(options: {
@@ -60,7 +60,7 @@ export class DataService<
     skip?: number;
     take?: number;
     count?: number;
-    filter?: FilterExpression | (FilterCriteria | FilterExpression)[]
+    filter?: FilterExpression | (FilterPredicate | FilterExpression)[]
   } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult?: boolean): Observable<T>;
 
   public read<T>(options: {
@@ -69,7 +69,7 @@ export class DataService<
     skip?: number;
     take?: number;
     count?: number;
-    filter?: FilterExpression | (FilterCriteria | FilterExpression)[]
+    filter?: FilterExpression | (FilterPredicate | FilterExpression)[]
   } & Omit<TOperation, 'payload' | 'type' | 'query'>, rawResult: boolean = false): Observable<T> {
     const {
       url,
