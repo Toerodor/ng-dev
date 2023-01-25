@@ -9,8 +9,10 @@
     "build": "nx build",
     "build:data": "nx build data",
     "build:misc": "nx build miscellaneous",
+    "build:store": "nx build store",
     "publish:data": "cd dist/libs/data && npm publish --registry http://10.99.17.177:4873 --new-version",
     "publish:misc": "cd dist/libs/core/miscellaneous && npm publish --registry http://10.99.17.177:4873 --new-version",
+    "publish:store": "cd dist/libs/store && npm publish --registry http://10.99.17.177:4873 --new-version",
     "test": "nx test"
   },
   "private": true,
