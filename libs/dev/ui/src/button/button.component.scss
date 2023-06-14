@@ -1,0 +1,36 @@
+.x-button {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.499;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+  height: 1.75rem;
+  padding: 0 .75rem;
+  border-width: .0625rem;
+  border-style:  solid;
+  border-radius: .25rem;
+  border-color: #d1d1d1;
+  background-color: #ffffff;
+  color: #262626;
+
+  & > * {
+    margin-right: .5rem;
+  }
+
+  & > :last-child {
+    margin-right: 0;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    filter: saturate(10) grayscale(1) brightness(0.95);
+    opacity: .75;
+  }
+
+}
