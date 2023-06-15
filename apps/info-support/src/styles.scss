@@ -13,3 +13,29 @@ body {
   height: 100%;
   overflow-x: hidden;
 }
+
+
+.dk-description {
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fit, minmax(625px, 1fr));
+  user-select: none;
+
+  &-item {
+
+  }
+
+  &-title {
+    color: #555555;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1em;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  &-content {
+    font-size: 14px;
+
+  }
+}

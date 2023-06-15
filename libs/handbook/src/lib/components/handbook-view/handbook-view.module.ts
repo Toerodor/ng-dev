@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ButtonModule, InlineInputModule, PanelModule, PropertyListModule } from '@dev/ui';
+
 import { HandbookViewComponent } from './handbook-view.component';
-import { PanelModule } from '@dev/ui';
 
 @NgModule({
-  imports: [CommonModule, PanelModule],
+  imports: [CommonModule, ButtonModule, PanelModule, InlineInputModule, PropertyListModule],
   declarations: [HandbookViewComponent],
   exports: [HandbookViewComponent]
 })

@@ -1,0 +1,35 @@
+.dk-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dfdfdf;
+  background-color: #ffffff;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: 500;
+    padding: 8px 12px;
+    min-height: 40px;
+    user-select: none;
+    background: #ffffff;
+    border-bottom: 1px solid #dfdfdf;
+  }
+
+  &-content {
+    padding: 24px;
+    overflow: auto;
+  }
+
+  &-footer {
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    padding: 8px 12px;
+    min-height: 40px;
+    user-select: none;
+    background: #ffffff;
+    border-top: 1px solid #dfdfdf;
+  }
+
+}

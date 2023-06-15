@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "d",
+            "prefix": "dk",
             "style": "camelCase"
           }
         ],
@@ -17,10 +17,11 @@
           "error",
           {
             "type": "element",
-            "prefix": "d",
+            "prefix": "dk",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "@angular-eslint/no-host-metadata-property": "off"
       },
       "extends": [
         "plugin:@nx/angular",

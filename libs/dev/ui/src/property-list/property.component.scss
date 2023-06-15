@@ -1,0 +1,18 @@
+.dk-property {
+
+  &-name {
+    color: #555555;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1em;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+
+  &-value {
+    font-size: 14px;
+    font-weight: 400;
+    color: #222222;
+  }
+
+}

@@ -1,0 +1,20 @@
+<ng-container *ngIf='titleComponent || toolsComponent'>
+  <div class='dk-panel-header'>
+    <ng-container *ngIf='titleComponent'>
+      <ng-template [ngTemplateOutlet]='titleComponent.templateRef'></ng-template>
+    </ng-container>
+
+    <ng-container *ngIf='toolsComponent'>
+      <ng-template [ngTemplateOutlet]='toolsComponent.templateRef'></ng-template>
+    </ng-container>
+  </div>
+</ng-container>
+
+<div class='dk-panel-content'>
+  <ng-content></ng-content>
+</div>
+
+<ng-container *ngIf='footerComponent'>
+  <ng-template [ngTemplateOutlet]='footerComponent.templateRef'></ng-template>
+</ng-container>
+

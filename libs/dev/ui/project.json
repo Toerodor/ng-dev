@@ -2,7 +2,7 @@
   "name": "dev-ui",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/dev/ui/src",
-  "prefix": "d",
+  "prefix": "dk",
   "tags": [],
   "projectType": "library",
   "targets": {

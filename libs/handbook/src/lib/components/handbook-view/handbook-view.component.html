@@ -1,10 +1,154 @@
-<div class='flex flex-col'>
-  <d-panel>
-    Основная Информация
-  </d-panel>
+<div class='h-handbook-view-header'>
+  <div>
+    <div class='h-handbook-name'>Классификатор типов интегрированных структур для организаций</div>
+    <div class='h-handbook-version'>
+      <span>Версия: 1</span>
+      <span>Последние изменение: 15.06.2023</span>
+    </div>
+  </div>
+  <div>
 
-  <d-panel>
-    Разделы
-  </d-panel>
+    <button dk-button>
+      <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-history' width='12' height='12'
+           viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round'
+           stroke-linejoin='round'>
+        <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+        <path d='M12 8l0 4l2 2'></path>
+        <path d='M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5'></path>
+      </svg>
+    </button>
+
+    <button dk-button>
+      <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-dots-vertical' width='12' height='12'
+           viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round'
+           stroke-linejoin='round'>
+        <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>
+        <path d='M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0'></path>
+        <path d='M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0'></path>
+        <path d='M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0'></path>
+      </svg>
+    </button>
+  </div>
 </div>
+
+<div class='h-handbook-view-content'>
+  <div class='h-handbook-details-pane'>
+
+    <dk-panel style='border: none'>
+
+      <dk-panel-title>
+        <span>Общая информация</span>
+      </dk-panel-title>
+
+      <dk-property-list columns='2'>
+        <dk-property name='Шифр'>
+
+        </dk-property>
+        <dk-property name='Тип'></dk-property>
+        <dk-property name='Краткое наименование'></dk-property>
+        <dk-property name='Полное наименование'></dk-property>
+        <dk-property name='Примечание'></dk-property>
+      </dk-property-list>
+
+<!--      <div class='dk-description'>-->
+
+<!--        <div class='dk-description-item'>-->
+<!--          <div class='dk-description-title'>Шифр</div>-->
+<!--          <div class='dk-description-content'>KLS_CODE</div>-->
+<!--        </div>-->
+
+<!--        <div class='dk-description-item'>-->
+<!--          <div class='dk-description-title'>Тип</div>-->
+<!--          <div class='dk-description-content'>Системный</div>-->
+<!--        </div>-->
+
+<!--        <div class='dk-description-item'>-->
+<!--          <div class='dk-description-title'>Краткое наименование</div>-->
+<!--          <div class='dk-description-content'>-->
+
+<!--            <div class='dk-text-editable'>-->
+<!--              <div class='dx-text-editable-overview'>-->
+<!--                Классификатор типов интегрированных структур для организаций-->
+<!--              </div>-->
+
+<!--              <div class='dk-text-editable-icon'>-->
+<!--                <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-edit' width='16' height='16'-->
+<!--                     viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round'-->
+<!--                     stroke-linejoin='round'>-->
+<!--                  <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>-->
+<!--                  <path d='M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1'></path>-->
+<!--                  <path d='M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z'></path>-->
+<!--                  <path d='M16 5l3 3'></path>-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class='dk-description-item'>-->
+<!--          <div class='dk-description-title'>Полное наименование</div>-->
+<!--          <div class='dk-description-content'>-->
+
+<!--            <div class='dk-text-editable'>-->
+<!--              <div class='dx-text-editable-overview'>-->
+<!--                Включает наступательное и оборонительное вооружение. Не включает средства управления оружием (огнем)-->
+<!--                (группа 12), приборы ночного видения (группа 58), ракетное вооружение, боеприпасы.-->
+<!--              </div>-->
+
+<!--              <div class='dk-text-editable-icon'>-->
+<!--                <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-edit' width='16' height='16'-->
+<!--                     viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round'-->
+<!--                     stroke-linejoin='round'>-->
+<!--                  <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>-->
+<!--                  <path d='M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1'></path>-->
+<!--                  <path d='M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z'></path>-->
+<!--                  <path d='M16 5l3 3'></path>-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+
+<!--        <div class='dk-description-item'>-->
+<!--          <div class='dk-description-title'>Примечание</div>-->
+<!--          <div class='dk-description-content'>-->
+<!--            <div class='dk-text-editable'>-->
+<!--              <div class='dx-text-editable-overview'>-->
+<!--                              Включает наступательное и оборонительное вооружение. Не включает средства управления оружием (огнем)-->
+<!--              (группа 12), приборы ночного видения (группа 58), ракетное вооружение, боеприпасы.-->
+<!--              </div>-->
+
+<!--              <div class='dk-text-editable-icon'>-->
+<!--                <svg xmlns='http://www.w3.org/2000/svg' class='icon icon-tabler icon-tabler-edit' width='16' height='16'-->
+<!--                     viewBox='0 0 24 24' stroke-width='2' stroke='currentColor' fill='none' stroke-linecap='round'-->
+<!--                     stroke-linejoin='round'>-->
+<!--                  <path stroke='none' d='M0 0h24v24H0z' fill='none'></path>-->
+<!--                  <path d='M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1'></path>-->
+<!--                  <path d='M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z'></path>-->
+<!--                  <path d='M16 5l3 3'></path>-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+    </dk-panel>
+
+  </div>
+
+  <!--  <div class='h-handbook-sections-pane'>-->
+
+  <!--    <div class='h-handbook-view-header'>-->
+  <!--      <div>-->
+  <!--        <span>Разделы</span>-->
+  <!--      </div>-->
+  <!--    </div>-->
+
+  <!--  </div>-->
+</div>
+
+
+
 

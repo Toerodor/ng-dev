@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'd-stack',
+  selector: 'dk-stack',
   template: '',
 })
 export class StackComponent {

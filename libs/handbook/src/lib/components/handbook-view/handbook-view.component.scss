@@ -1,0 +1,84 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.h-handbook-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #222222;
+}
+
+.h-handbook-version {
+  margin-top: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 10px;
+  color: #999999;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 1em;
+}
+
+
+.h-handbook-view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 8px 12px;
+  min-height: 40px;
+  cursor: default;
+  -webkit-user-select: none;
+  user-select: none;
+  background: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.h-handbook-details-pane {
+  background-color: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+
+  .h-handbook-details-general {
+    padding: 24px 24px;
+  }
+
+}
+
+.h-handbook-sections-pane {
+
+}
+
+.dk-text-editable {
+  padding: 2px 24px 2px 6px;
+  margin-left: -6px;
+  transition: all 0.15s ease-in-out;
+  cursor: text;
+  position: relative;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+
+    .dk-text-editable-icon {
+      opacity: 1;
+    }
+
+  }
+
+  &-overview {
+
+  }
+
+  &-icon {
+    opacity: 0;
+    transition: all 0.15s ease-in-out;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+  }
+
+}

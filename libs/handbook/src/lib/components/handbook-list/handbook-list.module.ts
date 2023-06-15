@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { HandbookListComponent } from './handbook-list.component';
 import { ButtonModule } from '@dev/ui';
+
+import { HandbookListComponent } from './handbook-list.component';
 
 @NgModule({
   imports: [CommonModule, ButtonModule],

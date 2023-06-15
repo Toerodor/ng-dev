@@ -1,0 +1,75 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.h-handbook-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 8px 12px;
+  min-height: 40px;
+  cursor: default;
+  user-select: none;
+  background: #ffffff;
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.h-handbook-list-content {
+  overflow-y: auto;
+}
+
+.h-handbook-card {
+  padding: 12px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, .025);
+  }
+
+  &-type {
+    color: #555555;
+    font-weight: 500;
+    line-height: 1em;
+  }
+
+  &-name {
+    color: #222222;
+    font-weight: 500;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    line-height: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &-code {
+    color: #999999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+
+}
+
+.h-handbook-list-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 500;
+  padding: 8px 12px;
+  height: 40px;
+  cursor: default;
+  user-select: none;
+  background: #ffffff;
+  border-top: 1px solid #dfdfdf;
+}
+
+.h-handbook-list-counter {
+  color: #222222;
+}

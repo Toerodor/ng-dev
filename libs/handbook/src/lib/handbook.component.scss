@@ -1,4 +1,17 @@
 :host {
   @apply h-full;
-  @apply flex flex-col;
+  @apply flex flex-row;
+}
+
+
+.h-handbook-list-pane {
+  width: 374px;
+  flex-basis: 374px;
+  height: 100%;
+  border-right: 1px solid #dfdfdf;
+}
+
+.h-handbook-view-pane {
+  background-color: #f6f6f6;
+  width: 100%;
 }
