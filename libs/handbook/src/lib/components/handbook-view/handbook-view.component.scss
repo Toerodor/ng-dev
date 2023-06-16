@@ -48,7 +48,53 @@
 
 }
 
+.h-handbook-view-content {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+}
+
 .h-handbook-sections-pane {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+
+  .h-classifiers-pane {
+    flex: 1 1 0;
+    display: flex;
+
+    .h-classifiers-list {
+      flex-basis: 374px;
+      width: 374px;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      border-right: 1px solid #dfdfdf;
+
+      .h-classifier-node {
+        cursor: pointer;
+        user-select: none;
+        --level: 1;
+
+        &-root {
+          padding: calc(6px * var(--level));
+          position: relative;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        &-children {
+          padding: calc(6px * var(--level));
+          position: relative;
+        }
+
+      }
+    }
+
+  }
+
+
 
 }
 

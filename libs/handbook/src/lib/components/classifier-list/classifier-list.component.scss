@@ -1,0 +1,71 @@
+:host {
+  width: 100%;
+}
+
+.h-classifiers-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #ffffff;
+  padding: 24px;
+}
+
+.list-node {
+  user-select: none;
+
+  &-root {
+    display: flex;
+    align-items: flex-start;
+    padding: 0 0 4px 0;
+  }
+
+  &-content {}
+
+  &-switcher {
+    position: relative;
+    flex: none;
+    align-self: stretch;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+    display: inline-block;
+    font-size: 10px;
+    vertical-align: baseline;
+
+    & > svg {
+      display: inline-block;
+    }
+
+  }
+
+  &-indent {
+    align-self: stretch;
+    white-space: nowrap;
+    user-select: none;
+
+    &-unit {
+      position: relative;
+      height: 100%;
+      display: inline-block;
+      width: 16px;
+
+      &::before {
+        position: absolute;
+        top: 0;
+        inset-inline-end: 12px;
+        bottom: -4px;
+        border-inline-end: 1px solid #d9d9d9;
+        content: "";
+      }
+
+    }
+  }
+
+  //display: flex;
+  //align-items: flex-start;
+  //padding: 0 0 4px 0;
+  //outline: none;
+  //
+
+
+}
