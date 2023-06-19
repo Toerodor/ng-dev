@@ -1,0 +1,36 @@
+.x-tree-node {
+  display: flex;
+  align-items: flex-start;
+  outline: none;
+
+  &-indent-unit {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+  }
+
+  &-switcher {
+    position: relative;
+    flex: none;
+    align-self: stretch;
+    width: 24px;
+    margin: 0;
+    line-height: 24px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  &-content {
+    position: relative;
+    min-height: 24px;
+    margin: 0;
+    padding: 0 4px;
+    line-height: 24px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+
+
+}

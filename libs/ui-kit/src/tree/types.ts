@@ -1,6 +1,9 @@
 
 export type NodeType<T> = {
-  id: string;
+  internalId: string | number;
   level: number;
   leaf: boolean;
-}
+  checked: boolean;
+  expanded: boolean;
+  children: NodeType<T>[];
+} & T;

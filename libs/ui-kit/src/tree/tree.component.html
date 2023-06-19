@@ -1,5 +1,7 @@
 <div class='x-tree-holder'>
   <x-tree-node
-    *ngFor="let node of nodes"
+    *ngFor='let node of nodes; let i = index'
+    [node]='node'
+    [attr.data-index]='i'
   ></x-tree-node>
 </div>
