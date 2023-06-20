@@ -2,15 +2,19 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  EventEmitter,
   HostBinding,
   inject,
   Input,
   NgZone,
   OnChanges,
+  Output,
   SimpleChanges,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
+
 import { NodeType } from './types';
+import { TreeNodeComponent } from './tree-node.component';
 
 
 @Component({
@@ -24,11 +28,14 @@ export class TreeComponent<T> implements OnChanges {
 
   @Input() data: T[] = [];
 
+  @Output() nodeClick = new EventEmitter<MouseEvent>();
+
   @HostBinding('class.x-tree') hostClass = true;
 
   nodes: NodeType<T>[] = [];
-  ngZone = inject(NgZone);
-  changeDetectorRef = inject(ChangeDetectorRef);
+  ngZone: NgZone = inject(NgZone);
+  changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+  draggedNode: TreeNodeComponent<T> | null = null;
 
   ngOnChanges(changes: SimpleChanges): void {
     const { data } = changes;
@@ -47,13 +54,14 @@ export class TreeComponent<T> implements OnChanges {
           expanded: false,
           checked: false,
           children: [],
+          label: '',
           leaf: !item.children,
           ...item,
           internalId: parentNode ? `${parentNode.internalId}-${i}` : i,
-          level: level,
+          level: level
         };
 
-        if(!node.leaf) {
+        if (!node.leaf) {
           node.children = process(node.children, level + 1, node);
         }
 
@@ -77,31 +85,38 @@ export class TreeComponent<T> implements OnChanges {
     this.changeDetectorRef.detectChanges();
   }
 
-  handleToggle(event: MouseEvent, node: NodeType<T>) {
-
+  handleToggle(event: MouseEvent | TouchEvent, node: NodeType<T>) {
     this.ngZone.run(() => {
       node.expanded = !node.expanded;
 
       const nodes = [...this.nodes];
       const index = nodes.indexOf(node);
 
-      console.log([...nodes]);
+      if (node.expanded) {
+        const nds: NodeType<T>[] = [];
 
-      if(node.expanded) {
+        const append = (node: NodeType<T>) => {
+          for (const child of node.children) {
+            nds.push(child);
+            child.expanded && append(child);
+          }
+        };
 
+        append(node);
+        nodes.splice(index + 1, 0, ...nds);
       } else {
-        let deleteCount = 0;
-        const count = (node: NodeType<T>) => {
-          deleteCount += node.children.length;
+        let count = 0;
+
+        const remove = (node: NodeType<T>) => {
+          count += node.children.length;
 
           for (const child of node.children) {
-            child.expanded && count(child);
+            child.expanded && remove(child);
           }
-        }
+        };
 
-        count(node);
-
-        nodes.splice(index + 1, deleteCount);
+        remove(node);
+        nodes.splice(index + 1, count);
       }
 
       event?.preventDefault();
@@ -110,5 +125,10 @@ export class TreeComponent<T> implements OnChanges {
       this.nodes = nodes;
     });
   }
+
+  trackByItem(_: number, item: NodeType<T>) {
+    return item.internalId;
+  }
+
 }
 

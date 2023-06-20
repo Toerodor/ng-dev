@@ -4,36 +4,38 @@
   </ng-template>
 </span>
 
-<ng-container *ngIf='node.leaf'>
-  <span class='x-tree-node-switcher' style='cursor: default'></span>
-</ng-container>
+<ng-container [ngSwitch]='true'>
 
-<ng-container *ngIf='!node.leaf'>
+  <ng-container *ngSwitchCase='node.leaf'>
+    <span class='x-tree-node-toggle x-tree-node-toggle-noop' style='cursor: default'>
+      <span class='x-tree-node-toggle-leaf'></span>
+    </span>
+  </ng-container>
+
+  <ng-container *ngSwitchCase='!node.leaf'>
   <span
-    class='x-tree-node-switcher'
+    class='x-tree-node-toggle'
+    [class.x-tree-node-toggle-expanded]='node.expanded'
     (click)='tree.handleToggle($event, node)'
   >
     <span
-      style='display: inline-block; font-size: 10px; vertical-align: baseline;'
+      style='display: inline-block; flex: 0 0 auto; vertical-align: text-bottom; cursor: pointer; padding: 7px;'
     >
       <svg
-        viewBox='0 0 1024 1024'
-        focusable='false'
-        data-icon='caret-down'
-        width='1em'
-        height='1em'
-        fill='currentColor'
-        aria-hidden='true'
-      >
+        width='16'
+        height='16' viewBox='0 0 16 16' aria-labelledby='iconTitle-50' role='img'>
         <path
-          d='M840.4 300H183.6c-19.7 0-30.7 20.8-18.5 35l328.4 380.8c9.4 10.9 27.5 10.9 37 0L858.9 335c12.2-14.2 1.2-35-18.5-35z'
+          d='M10.71 7.29l-4-4a1.003 1.003 0 00-1.42 1.42L8.59 8 5.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71l4-4c.18-.18.29-.43.29-.71 0-.28-.11-.53-.29-.71z'
+          fill-rule='evenodd'
         ></path>
       </svg>
     </span>
   </span>
+  </ng-container>
+
 </ng-container>
 
 
 <span class='x-tree-node-content'>
-  {{node.level}}
+  {{node.label}}
 </span>
