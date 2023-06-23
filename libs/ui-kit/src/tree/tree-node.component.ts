@@ -1,118 +1,55 @@
-import {
-  AfterViewInit,
-  ChangeDetectionStrategy,
-  Component, ElementRef,
-  HostBinding,
-  HostListener,
-  inject,
-  Input, NgZone, OnInit,
-  ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, inject, Input } from '@angular/core';
 
+import { Node } from './types';
 import { TreeComponent } from './tree.component';
-import { NodeType } from './types';
-import { fromEvent, throttleTime } from 'rxjs';
-
 
 @Component({
   selector: 'x-tree-node',
-  templateUrl: './tree-node.component.html',
-  styleUrls: ['./tree-node.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
-  host: {
-    '[attr.draggable]': 'true'
-  }
+  changeDetection: ChangeDetectionStrategy.Default,
+  template: `
+    <ng-container [ngSwitch]='true'>
+      <ng-container *ngSwitchCase='node.leaf'>
+        <span class='x-tree-node-toggle x-tree-node-toggle-noop' style='cursor: default'>
+          <span class='x-tree-node-toggle-leaf'></span>
+        </span>
+      </ng-container>
+      <ng-container *ngSwitchCase='!node.leaf'>
+        <span class='x-tree-node-toggle' (click)='treeComponent.handleNodeToggle($event, node)'>
+          <span>
+            <svg width='1em' height='1em' viewBox='0 0 16 16' role='img'>
+              <path
+                d='M10.71 7.29l-4-4a1.003 1.003 0 00-1.42 1.42L8.59 8 5.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 001.71.71l4-4c.18-.18.29-.43.29-.71 0-.28-.11-.53-.29-.71z'
+              ></path>
+            </svg>
+          </span>
+        </span>
+      </ng-container>
+    </ng-container>
+    <span class='x-tree-node-content'>
+      {{node.label}}
+    </span>
+  `
 })
-export class TreeNodeComponent<T> implements OnInit {
+export class TreeNodeComponent<T> {
+  public elementRef: ElementRef<HTMLElement> = inject(ElementRef);
+  public treeComponent: TreeComponent<T> = inject(TreeComponent);
 
-  @Input({ required: true }) node!: NodeType<T>;
-
-  @HostBinding('class.x-tree-node') hostClass = true;
-
-  tree: TreeComponent<T> = inject(TreeComponent);
-  ngZone: NgZone = inject(NgZone);
-  elementRef: ElementRef<HTMLElement> = inject(ElementRef);
-
-  get indent() {
-    return Array(this.node.level);
+  /** @hidden */
+  @HostBinding('class.x-tree-node')
+  public get className(): boolean {
+    return true;
   }
 
-  ngOnInit(): void {
-    this.ngZone.runOutsideAngular(() => {
-      const nativeElement = this.elementRef.nativeElement;
-
-      fromEvent<DragEvent>(nativeElement, 'dragstart')
-        .subscribe((e: DragEvent) => {
-          this.tree.draggedNode = this;
-          console.log(this.tree.draggedNode?.node.internalId);
-        });
-
-      fromEvent<DragEvent>(nativeElement, 'dragenter')
-        .subscribe((e: DragEvent) => {
-          // console.log('dragenter', this.tree.draggedNode?.node.internalId, this.node.internalId);
-
-
-        });
-
-      fromEvent<DragEvent>(nativeElement, 'dragover')
-        .pipe(throttleTime(1))
-        .subscribe((e: DragEvent) => {
-          e?.preventDefault();
-
-          const nodeRect = this.elementRef.nativeElement.getBoundingClientRect();
-
-          const nodeTop = nodeRect.top;
-          const nodeHeight = nodeRect.height;
-
-          console.log(nodeTop);
-
-          // const { top, height } = this.elementRef.nativeElement.getBoundingClientRect();
-          // const division = height / 3;
-          // const position = e.clientY - top;
-
-          // const { clientY } = e;
-          // const { top, height } = (e.target as Element).getBoundingClientRect();
-          //
-          // const position = clientY - top;
-          // const nodeDiv= height / 3
-          //
-          // console.log(top, nodeDiv);
-
-          // switch (true) {
-          //   case position < top + division:
-          //     console.log('Before');
-          //     break;
-          //   case position >= top + height - division:
-          //     console.log('Before');
-          //     break;
-          //   default:
-          //     console.log('Over');
-          // }
-
-
-        });
-
-      fromEvent<DragEvent>(nativeElement, 'dragleave')
-        .subscribe((e: DragEvent) => {
-          console.log('dragleave');
-        });
-
-      fromEvent<DragEvent>(nativeElement, 'drop')
-        .subscribe((e: DragEvent) => {
-          console.log('drop');
-        });
-
-      fromEvent<DragEvent>(nativeElement, 'dragend')
-        .subscribe((e: DragEvent) => {
-          this.tree.draggedNode = null;
-        });
-
-    });
+  /** @hidden */
+  @HostBinding('style.padding-left.rem')
+  public get paddingLeft(): number {
+    return this.node.level;
   }
 
-  handleLabelClick($event: MouseEvent) {
-    this.tree.nodeClick.emit($event);
-  }
+  /**
+   * @en_US Label
+   */
+  @Input() public node!: Node<T>;
+
 
 }
