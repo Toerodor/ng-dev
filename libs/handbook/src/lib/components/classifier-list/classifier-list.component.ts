@@ -1,5 +1,13 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
+type TTT = {
+  id: number;
+  pid?: number;
+  label: string;
+  expanded?: boolean;
+  children?: TTT[];
+}
+
 @Component({
   selector: 'h-classifier-list',
   templateUrl: './classifier-list.component.html',
@@ -7,7 +15,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class ClassifierListComponent {
-  treeData = [
+  treeData: TTT[] = [
     {
       id: 1,
       label: 'Классификатор типов интегрированных структур для организаций ',

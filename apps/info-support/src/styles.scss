@@ -39,3 +39,14 @@ body {
 
   }
 }
+
+.x-tree {
+  display: flex;
+  flex-direction: column;
+
+  &-node {
+    position: relative;
+    display: flex;
+  }
+
+}
